@@ -1,4 +1,5 @@
-# MrAnderson - ## A Django blog application
+# MrAnderson
+## A Django blog application
 
 ### It can:
 - Create a blog model with attributes of title, body, genre, ect.
