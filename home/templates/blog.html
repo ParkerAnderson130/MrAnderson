@@ -1,0 +1,37 @@
+{% load static %}
+{% load sass_tags %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Blog | Mr. Anderson</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{% sass_src 'scss/styles.scss' %}" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        {% include 'navbar.html' %}
+        {% block content %}
+            <div class="marginSection" id="blog">
+                <h2 class="fontMedium fontThin marginTitle titleRight"><i>A few shared thoughts, i.e.</i></h2>
+                <h1 class="fontLarge marginTitle titleLeft">A Blog.</h1>
+                <form class="marginHalf" id="filter" method="GET">
+                    {{ filter.form }}
+                    <button class="border5 fontSmall" type="submit">Filter</button>
+                </form>
+                {% for post in filter.qs %}
+                    <a href="{% url 'blog-detail' post.pk %}">
+                        <div class="blog-tile border10 marginNested padding1 popupWindow">
+                            <h1>{{ post.title }} <p class="genre-tile border10 colorHighlight fontSmall padding25">{{post.genre}}</p></h1>
+                            <h2 class="colorContrast fontAuto fontMedium">&raquo;</h2>    
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        {% include 'footer.html' %}
+        {% endblock content %}
+        <script src="" async defer></script>
+    </body>
+</html>

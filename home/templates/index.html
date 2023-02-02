@@ -1,0 +1,49 @@
+{% load static %}
+{% load sass_tags %}
+{% load tags %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Home | Mr. Anderson</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{% sass_src 'scss/styles.scss' %}" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        {% include 'navbar.html' %}
+        {% block content %}
+        <div id="landing">
+            <div class="marginSection" id="quote">
+                <h1 class="fontMedium fontThin marginTitle titleRight" id="neo-quote"><i>Why do my eyes hurt?</i></h1>
+                <h1 class="colorHighlight fontLarge fontThick marginTitle titleLeft" id="morpheus-quote">You've never used them before.</h1>
+                <p class="colorHighlight fontSmall marginTitle titleLeft"><a class="link" href="{% url 'blog' %}">Use your eyes &raquo;</a></p>
+            </div>
+            <div class="border10 marginSection" id="jumbotron"><img class="marginAuto" src="{% static 'img/Mr_Anderson_Logo_Full.png' %}"></div>
+            <div class="marginSection" id="about-me">
+                <h2 class="fontMedium fontThin titleRight"><i>Who are you?</i></h2>
+                <p class="colorHighlight fontSmall fontThin" id="typewriter">Hi. I am Parker.<br>
+                I am a Computer Science student.<br>
+                As you can tell, I like CSS and Python the most.
+                </p>
+            </div>
+            <div class="marginSection" id="blog-preview">
+                <h2 class="fontMedium fontThin titleRight"><i>What are you up to?</i></h2>
+                <div class="flexParent justifyContentSpace">
+                    {% for post in post %}
+                        <a class="marginNested" href="{% url 'blog-detail' post.pk %}">
+                            <div class="blog-preview border10 padding1 popupWindow">
+                                <h1 class="fontSM">{{ post.title }} <p class="timeSince colorContrast fontSmall fontThin marginTitle">{{ post.date|timesince|upto:',' }} ago</p></h1>
+                                <p>{{ post.body|truncatewords:15|safe }}</p> 
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% include 'footer.html' %}
+        {% endblock content %}
+    </body>
+</html>

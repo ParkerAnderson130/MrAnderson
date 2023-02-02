@@ -1,0 +1,27 @@
+{% load static %}
+{% load sass_tags %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Contact | Mr. Anderson</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{% sass_src 'scss/styles.scss' %}" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        {% include 'navbar.html' %}
+        {% block content %}
+        <div class="marginSection" id="contact"> 
+            <form action="" class="marginHalf" method="post" role="form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        {% include 'footer.html' %}
+        {% endblock content %}
+    </body>
+</html>
