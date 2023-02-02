@@ -2,7 +2,7 @@
 
 ## A Django blog application
 
-## It can:
+### It can:
 - Create a blog model with attributes of title, body, genre, ect.
 - Allow a user to filter by keyword and/or dropdown of genre
 - Contact an admin of the site through Django forms
